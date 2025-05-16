@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('prep_time')->comment('in minutes');
             $table->integer('servings')->comment('in minutes');
+            $table->string('img_url')->nullable();
             $table->timestamps();
         });
     }
