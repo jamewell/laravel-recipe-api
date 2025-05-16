@@ -11,6 +11,6 @@ class RecipeIngredient extends Pivot
 
     public function unit(): BelongsTo
     {
-        return $this->belongsTo(UnitOfMeasurement::class, 'unit_id');   
+        return $this->belongsTo(UnitOfMeasurement::class, 'unit_id');
     }
 }

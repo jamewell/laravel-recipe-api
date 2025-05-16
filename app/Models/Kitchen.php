@@ -11,7 +11,7 @@ class Kitchen extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
+        'name',
         'description',
     ];
 

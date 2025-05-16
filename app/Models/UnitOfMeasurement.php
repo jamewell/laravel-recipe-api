@@ -9,7 +9,7 @@ class UnitOfMeasurement extends Model
     protected $fillable = [
         'full_name',
         'abbreviation',
-        'description'
+        'description',
     ];
 
     public function recipeIngredients()
