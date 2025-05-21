@@ -2,17 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
-use App\Models\Ingredient;
-use App\Models\Kitchen;
-use App\Models\Instruction;
-use App\Models\RecipeIngredient;
-use App\Models\User;
 
 /**
  * Class Recipe
@@ -63,7 +56,6 @@ class Recipe extends Model
             ->using(RecipeIngredient::class);
     }
 
-    /** @return Builder */
     public function instructions(): Builder
     {
         return $this->hasMany(Instruction::class)->orderBy('step_number');

@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        $user = new User();
+        $user = new User;
         $user->user_name = $input['user_name'];
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];

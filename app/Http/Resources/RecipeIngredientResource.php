@@ -18,9 +18,9 @@ class RecipeIngredientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     * 
+     *
      * @property \App\Models\RecipeIngredient $resource
-     * 
+     *
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
@@ -28,7 +28,7 @@ class RecipeIngredientResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'category' => $this->whenLoaded('category', fn() => [
+            'category' => $this->whenLoaded('category', fn () => [
                 'id' => $this->category->id,
                 'name' => $this->category->name,
             ]),

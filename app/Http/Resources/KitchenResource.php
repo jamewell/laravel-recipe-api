@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class KitchenResource
- * 
+ *
  * @property int $id
  * @property string $name
  * @property string|null $description
@@ -16,7 +16,7 @@ class KitchenResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     * 
+     *
      * @property \App\Models\Kitchen $resource
      *
      * @return array<string, mixed>

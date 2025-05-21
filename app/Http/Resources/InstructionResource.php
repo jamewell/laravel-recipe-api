@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class InstructionResource
- * 
+ *
  * @property int $id
  * @property string $description
  * @property int $order
@@ -17,7 +17,7 @@ class InstructionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     * 
+     *
      * @property \App\Models\Instruction $resource
      *
      * @return array<string, mixed>
@@ -26,7 +26,7 @@ class InstructionResource extends JsonResource
     {
         return [
             'description' => $this->description,
-            'img_url' => $this->img_url
+            'img_url' => $this->img_url,
         ];
     }
 }

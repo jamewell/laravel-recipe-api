@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\UnitOfMeasurement;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\UnitOfMeasurement;
 
 /**
  * Class UnitOfMeasurementResource
@@ -18,7 +18,7 @@ class UnitOfMeasurementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     * 
+     *
      * @property UnitOfMeasurement $resource
      *
      * @return array<string, mixed>

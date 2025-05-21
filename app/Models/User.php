@@ -22,7 +22,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $remember_token
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
+ *
  * @method static \Database\Factories\UserFactory factory()
  */
 class User extends Authenticatable

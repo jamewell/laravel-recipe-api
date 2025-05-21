@@ -24,7 +24,7 @@ class RecipeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     * 
+     *
      * @property Recipe $resource
      *
      * @return array<string, mixed>
@@ -39,7 +39,7 @@ class RecipeResource extends JsonResource
             'prep_time' => $this->prep_time,
             'cook_time' => $this->cook_time,
             'servings' => $this->servings,
-            'user' => $this->whenLoaded('user', fn() => [
+            'user' => $this->whenLoaded('user', fn () => [
                 'id' => $this->user->id,
                 'username' => $this->user->user_name,
             ]),
