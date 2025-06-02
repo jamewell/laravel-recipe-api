@@ -25,6 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('unit_of_measurements', function (Blueprint $table) {
+            $table->dropUnique(['abbreviation']);
+        });
+
         Schema::dropIfExists('unit_of_measurements');
     }
 };

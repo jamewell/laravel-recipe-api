@@ -27,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('instructions', function (Blueprint $table) {
+            $table->dropForeign(['recipe_id']);
+        });
+
         Schema::dropIfExists('instructions');
     }
 };

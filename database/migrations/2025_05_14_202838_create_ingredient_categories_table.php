@@ -24,6 +24,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('ingredients', function (Blueprint $table) {
+            $table->dropUnique(['name']);
+        });
         Schema::dropIfExists('ingredient_categories');
     }
 };

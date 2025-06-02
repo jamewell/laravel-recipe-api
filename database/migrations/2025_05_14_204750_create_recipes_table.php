@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('prep_time')->comment('in minutes');
+            $table->integer('cook_time')->comment('in minutes');
             $table->integer('servings')->comment('in minutes');
             $table->string('img_url')->nullable();
             $table->timestamps();
@@ -31,6 +32,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('recipes', function (Blueprint $table) {
+            $table->dropIndex('user_id');
+            $table->dropIndex('kitchen_id');
+        });
         Schema::dropIfExists('recipes');
     }
 };
