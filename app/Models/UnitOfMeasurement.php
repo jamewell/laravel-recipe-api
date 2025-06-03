@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Database\Factories\UnitOfMeasurementFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -12,9 +14,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $full_name
  * @property string $abbreviation
  * @property string|null $description
+ * @property-read RecipeIngredient[] $recipeIngredients
+ *
+ * @method static UnitOfMeasurementFactory factory()
  */
 class UnitOfMeasurement extends Model
 {
+    /** @use HasFactory<UnitOfMeasurementFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'full_name',
         'abbreviation',

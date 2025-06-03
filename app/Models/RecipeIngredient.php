@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -20,7 +21,16 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class RecipeIngredient extends Pivot
 {
-    protected $table = 'recipe_ingredients';
+    /**
+     * @var list<string>
+     */
+    protected $fillable = [
+        'recipe_id',
+        'ingredient_id',
+        'unit_id',
+        'quantity',
+        'notes',
+    ];
 
     /** @return BelongsTo<UnitOfMeasurement, $this> */
     public function unit(): BelongsTo

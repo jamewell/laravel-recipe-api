@@ -13,14 +13,19 @@ class SyncIngredientsAction
      */
     public function execute(Recipe $recipe, array $ingredients): void
     {
-        $recipe->ingredients()->sync(
-            collect($ingredients)->map(function ($ingredient) {
-                return [
+        $syncData = [];
+        foreach ($ingredients as $ingredient) {
+            if (isset($ingredient['id'], $ingredient['quantity'], $ingredient['unit_id'])) {
+                $syncData[$ingredient['id']] = [
                     'quantity' => $ingredient['quantity'],
                     'unit_id' => $ingredient['unit_id'],
                     'notes' => $ingredient['notes'] ?? null,
                 ];
-            })->toArray()
+            }
+        }
+
+        $recipe->ingredients()->sync(
+            $syncData
         );
     }
 }

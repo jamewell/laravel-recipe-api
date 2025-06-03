@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Database\Factories\RecipeFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -21,9 +23,14 @@ use Illuminate\Database\Query\Builder;
  * @property string|null $img_url
  * @property-read Kitchen $kitchen
  * @property-read User $user
+ *
+ * @method static RecipeFactory factory()
  */
 class Recipe extends Model
 {
+    /** @use HasFactory<RecipeFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'kitchen_id',

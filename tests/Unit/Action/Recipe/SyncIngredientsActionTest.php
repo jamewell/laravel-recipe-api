@@ -66,12 +66,12 @@ class SyncIngredientsActionTest extends TestCase
         // First sync with both ingredients
         $this->action->execute($recipe, [
             ['id' => $ingredient1->id, 'quantity' => 100, 'unit_id' => $unit->id],
-            ['id' => $ingredient2->id, 'quantity' => 200, 'unit_id' => $unit->id]
+            ['id' => $ingredient2->id, 'quantity' => 200, 'unit_id' => $unit->id],
         ]);
 
         // Then sync with only one ingredient
         $this->action->execute($recipe, [
-            ['id' => $ingredient1->id, 'quantity' => 150, 'unit_id' => $unit->id]
+            ['id' => $ingredient1->id, 'quantity' => 150, 'unit_id' => $unit->id],
         ]);
 
         $this->assertCount(1, $recipe->fresh()->ingredients);
@@ -87,7 +87,7 @@ class SyncIngredientsActionTest extends TestCase
 
         // First add an ingredient
         $this->action->execute($recipe, [
-            ['id' => $ingredient->id, 'quantity' => 100, 'unit_id' => $unit->id]
+            ['id' => $ingredient->id, 'quantity' => 100, 'unit_id' => $unit->id],
         ]);
 
         // Then sync with empty array
