@@ -15,7 +15,7 @@ class SyncInstructionsAction
     {
         $recipe->instructions()->delete();
 
-        $instructionsToCreate[] = [];
+        $instructionsToCreate = [];
         foreach ($instructions as $index => $instruction) {
             $stepNumber = $index + 1;
 
@@ -26,7 +26,6 @@ class SyncInstructionsAction
             ];
         }
 
-        // @phpstan-ignore-next-line
         $recipe->instructions()->createMany($instructionsToCreate);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Recipe
@@ -63,8 +63,10 @@ class Recipe extends Model
             ->using(RecipeIngredient::class);
     }
 
-    public function instructions(): Builder
+    /** @return HasMany<Instruction, $this> */
+    public function instructions(): HasMany
     {
+        // @phpstan-ignore-next-line
         return $this->hasMany(Instruction::class)->orderBy('step_number');
     }
 }
