@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\KitchenFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -17,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Kitchen extends Model
 {
+    /** @use HasFactory<KitchenFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'description',
