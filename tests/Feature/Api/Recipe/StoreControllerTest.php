@@ -8,7 +8,7 @@ class StoreControllerTest extends RecipeTestCase
 {
     public function test_it_creates_a_recipe_with_valid_data()
     {
-        $recipeData = $this->createRecipe();
+        $recipeData = $this->createRecipeData();
 
         $response = $this->postJson(route('api.recipes.store'), $recipeData);
 
@@ -67,7 +67,7 @@ class StoreControllerTest extends RecipeTestCase
     {
         $this->refreshApplication();
 
-        $response = $this->postJson(route('api.recipes.store'), $this->createRecipe());
+        $response = $this->postJson(route('api.recipes.store'), $this->createRecipeData());
 
         $response->assertUnauthorized()
             ->assertJson(['message' => 'Unauthenticated.']);
@@ -88,7 +88,7 @@ class StoreControllerTest extends RecipeTestCase
 
     public function test_it_validates_ingredients_and_instructions()
     {
-        $recipeData = $this->createRecipe();
+        $recipeData = $this->createRecipeData();
         unset($recipeData['ingredients'], $recipeData['instructions']);
 
         $response = $this->postJson(route('api.recipes.store'), $recipeData);

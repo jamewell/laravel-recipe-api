@@ -3,7 +3,9 @@
 namespace Tests\Feature\Api\Recipe;
 
 use App\Models\Ingredient;
+use App\Models\Instruction;
 use App\Models\Kitchen;
+use App\Models\Recipe;
 use App\Models\UnitOfMeasurement;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -34,7 +36,7 @@ class RecipeTestCase extends TestCase
         Sanctum::actingAs($this->user, ['*']);
     }
 
-    protected function createRecipe(array $overrides = []): array
+    protected function createRecipeData(array $overrides = []): array
     {
         $recipeData = array_merge([
             'user_id' => $this->user->id,
@@ -60,5 +62,23 @@ class RecipeTestCase extends TestCase
         ], $overrides);
 
         return $recipeData;
+    }
+
+    protected function createRecipeWithRelations(int $count = 1): void
+    {
+        Recipe::factory()
+            ->count($count)
+            ->for($this->user)
+            ->for($this->kitchen)
+            ->hasAttached(
+                $this->ingredient,
+                [
+                    'unit_id' => $this->unitOfMeasurement->id,
+                    'quantity' => 2,
+                    'notes' => 'Test notes for ingredient',
+                ]
+            )
+            ->has(Instruction::factory()->count(2), 'instructions')
+            ->create();
     }
 }

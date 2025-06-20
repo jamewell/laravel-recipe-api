@@ -20,7 +20,7 @@ class RecipeFactory extends Factory
         $kitchenId = KitchenFactory::new()->create()->id;
 
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->create()->id,
             'kitchen_id' => $kitchenId,
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Recipe\IndexController;
 use App\Http\Controllers\Recipe\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,3 +14,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('recipes', StoreController::class)
         ->name('api.recipes.store');
 });
+
+Route::get('recipes', IndexController::class)->name('api.recipes.index');
