@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Recipe\IndexController;
+use App\Http\Controllers\Recipe\ShowController;
 use App\Http\Controllers\Recipe\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('recipes', IndexController::class)->name('api.recipes.index');
+Route::get('recipes/{recipe}', ShowController::class)
+    ->name('api.recipes.show')
+    ->where('recipe', '[0-9]+');
