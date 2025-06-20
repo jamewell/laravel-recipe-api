@@ -66,7 +66,6 @@ class Recipe extends Model
     /** @return HasMany<Instruction, $this> */
     public function instructions(): HasMany
     {
-        // @phpstan-ignore-next-line
         return $this->hasMany(Instruction::class)->orderBy('step_number');
     }
 }

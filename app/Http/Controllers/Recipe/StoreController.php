@@ -18,7 +18,6 @@ class StoreController extends Controller
 
     public function __invoke(StoreRequest $request): RecipeResource
     {
-        // @phpstan-ignore-next-line
         $recipe = Recipe::create($request->validated());
 
         if ($request->has('ingredients')) {
