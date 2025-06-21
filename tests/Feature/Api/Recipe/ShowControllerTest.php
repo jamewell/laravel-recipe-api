@@ -3,9 +3,6 @@
 namespace Tests\Feature\Api\Recipe;
 
 use App\Models\Recipe;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 
 class ShowControllerTest extends RecipeTestCase
 {

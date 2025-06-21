@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Recipe;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {

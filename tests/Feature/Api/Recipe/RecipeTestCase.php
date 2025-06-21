@@ -64,11 +64,13 @@ class RecipeTestCase extends TestCase
         return $recipeData;
     }
 
-    protected function createRecipeWithRelations(int $count = 1): void
+    protected function createRecipeWithRelations(int $count = 1, ?User $newUser = null): void
     {
+        $user = $newUser ?: $this->user;
+
         Recipe::factory()
             ->count($count)
-            ->for($this->user)
+            ->for($user)
             ->for($this->kitchen)
             ->hasAttached(
                 $this->ingredient,
