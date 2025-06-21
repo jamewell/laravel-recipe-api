@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Recipe\DestroyController;
 use App\Http\Controllers\Recipe\IndexController;
 use App\Http\Controllers\Recipe\ShowController;
 use App\Http\Controllers\Recipe\StoreController;
@@ -17,6 +18,9 @@ Route::middleware('auth:sanctum')->group(function () {
         ->name('api.recipes.store');
     Route::put(('recipes/{recipe}'), UpdateController::class)
         ->name('api.recipes.update')
+        ->where('recipe', '[0-9]+');
+    Route::delete('recipes/{recipe}', DestroyController::class)
+        ->name('api.recipes.destroy')
         ->where('recipe', '[0-9]+');
 });
 
