@@ -17,9 +17,9 @@ class InstructionFactory extends Factory
     public function definition(): array
     {
         return [
-            'step_number' => $this->faker->unique()->numberBetween(1, 100),
-            'description' => $this->faker->sentence(),
-            'img_url' => $this->faker->imageUrl(640, 480, 'food', true),
+            'step_number' => fake()->unique()->numberBetween(1, 100),
+            'description' => fake()->sentence(),
+            'img_url' => fake()->imageUrl(640, 480, 'food', true),
         ];
     }
 }
