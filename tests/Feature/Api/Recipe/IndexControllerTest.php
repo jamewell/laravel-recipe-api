@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Recipe;
 
 use App\Models\Recipe;
+use Database\Factories\KitchenFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class IndexControllerTest extends RecipeTestCase
@@ -93,5 +94,48 @@ class IndexControllerTest extends RecipeTestCase
                     'total' => 0,
                 ],
             ]);
+    }
+
+    public function test_index_filters_recipes_by_multiple_critrria(): void
+    {
+        $kitchen = KitchenFactory::new()->create(['id' => 1]);
+        $kitchen2 = KitchenFactory::new()->create(['id' => 2]);
+
+        $recipe1 = Recipe::factory()->create([
+            'kitchen_id' => $kitchen->id,
+            'title' => 'risotto',
+        ]);
+
+        Recipe::factory()->create(['kitchen_id' => $kitchen2->id, 'title' => 'Thit Kho']);
+        Recipe::factory()->create(['servings' => 2]);
+        Recipe::factory()->create(['prep_time' => 30]);
+        Recipe::factory()->create(['title' => 'Chicken Dish']);
+
+        $response = $this->getJson('/api/recipes?' . http_build_query([
+            'kitchen' => 1,
+            'servings' => 4,
+            'max_prep_time' => 20,
+            'max_cook_time' => 40,
+            'title' => 'risotto',
+        ]));
+
+        $response = $this->getJson(route('api.recipes.index', ['kitchen' => $kitchen->id]));
+        $response->assertOk()
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.id', $recipe1->id);
+    }
+
+    public function test_index_filters_recipes_by_kitchen(): void
+    {
+        $kitchen = KitchenFactory::new()->create(['id' => 1]);
+        $kitchen2 = KitchenFactory::new()->create(['id' => 2]);
+
+        $recipe1 = Recipe::factory()->create(['kitchen_id' => $kitchen->id]);
+        Recipe::factory()->create(['kitchen_id' => $kitchen2->id]);
+
+        $response = $this->getJson(route('api.recipes.index', ['kitchen' => $kitchen->id]));
+        $response->assertOk()
+            ->assertJsonCount(1, 'data')
+            ->assertJsonPath('data.0.id', $recipe1->id);
     }
 }
