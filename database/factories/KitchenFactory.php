@@ -17,9 +17,8 @@ class KitchenFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->unique()->numberBetween(1, 1000),
-            'name' => $this->faker->name(),
-            'description' => $this->faker->sentence(10),
+            'name' => fake()->name(),
+            'description' => fake()->sentence(10),
         ];
     }
 }
