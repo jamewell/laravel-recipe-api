@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Recipe;
 
 use App\Actions\Recipe\FilterAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Recipe\IndexRequest;
 use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class IndexController extends Controller
@@ -15,8 +15,10 @@ class IndexController extends Controller
         private readonly FilterAction $filterAction
     ) {}
 
-    public function __invoke(Request $request): AnonymousResourceCollection
+    public function __invoke(IndexRequest $request): AnonymousResourceCollection
     {
+        $filters = $request->validated();
+
         $query = Recipe::with([
             'user',
             'kitchen',
@@ -26,17 +28,7 @@ class IndexController extends Controller
 
         $filteredRecipes = $this->filterAction->execute(
             $query,
-            $request->only([
-                'kitchen',
-                'servings',
-                'min_servings',
-                'max_servings',
-                'prep_time',
-                'max_prep_time',
-                'cook_time',
-                'max_cook_time',
-                'title',
-            ])
+            $filters
         );
 
         $recipes = $filteredRecipes->latest()->paginate(10);
