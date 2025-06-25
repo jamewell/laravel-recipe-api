@@ -6,19 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class IngredientResource
+ * Class IngredientCategoryResource
  *
  * @property int $id
- * @property int $category_id
  * @property string $name
  * @property string|null $description
  */
-class IngredientResource extends JsonResource
+class IngredientCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @property \App\Models\Ingredient $resource
+     * @property \App\Models\IngredientCategory $resource
      *
      * @return array<string, mixed>
      */
@@ -26,7 +25,6 @@ class IngredientResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'category' => new IngredientCategoryResource($this->whenLoaded('category')),
             'name' => $this->name,
             'description' => $this->description,
         ];
