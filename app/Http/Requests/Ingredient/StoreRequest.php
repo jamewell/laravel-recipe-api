@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:225|unique:ingredients,name',
             'description' => 'nullable|string|max:1000',
-            'category_id' => 'required|exists::ingredient_categories,id',
+            'category_id' => 'required|exists:ingredient_categories,id',
         ];
     }
 }

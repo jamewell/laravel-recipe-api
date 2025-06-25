@@ -15,11 +15,13 @@ class IndexController extends Controller
         $request->validated();
 
         $ingredients = Ingredient::with('category')
-            ->when($request->category_id, function ($query) use ($request) {
-                $query->where('category_id', $request->category_id);
-            })
-            ->orderBy('category_id')
-            ->orderBy('name')
+            ->when($request->category_id, fn ($q) => $q->where('category_id', $request->category_id))
+            ->when($request->search, fn ($q) => $q->where('name', 'like', '%'.$request->search.'%'))
+            ->when(
+                $request->sort_by,
+                fn ($q) => $q->orderBy((string) $request->sort_by, $request->sort_direction ?? 'asc'),
+                fn ($q) => $q->orderBy('category_id')->orderBy('name')
+            )
             ->paginate($request->per_page ?? 15);
 
         return IngredientResource::collection($ingredients);
