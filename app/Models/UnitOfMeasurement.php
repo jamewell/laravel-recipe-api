@@ -27,6 +27,13 @@ class UnitOfMeasurement extends Model
         'full_name',
         'abbreviation',
         'description',
+        'system',
+        'type',
+        'base_equivalent',
+    ];
+
+    protected $casts = [
+        'base_equivalent' => 'float',
     ];
 
     /** @return HasMany<RecipeIngredient, $this> */

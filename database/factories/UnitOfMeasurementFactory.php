@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\UnitSystem;
+use App\Enums\UnitType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +22,9 @@ class UnitOfMeasurementFactory extends Factory
             'full_name' => fake()->unique()->word(),
             'abbreviation' => fake()->unique()->word(),
             'description' => fake()->sentence(),
+            'system' => UnitSystem::METRIC->value,
+            'type' => UnitType::VOLUME->value,
+            'base_equivalent' => fake()->numberBetween(1, 10),
         ];
     }
 }
