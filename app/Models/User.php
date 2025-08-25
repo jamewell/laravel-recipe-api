@@ -3,7 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UnitSystem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -64,5 +67,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /** @return HasOne<UserMeasurementPreference, $this> */
+    public function measurementPreference(): HasOne
+    {
+        return $this->hasOne(UserMeasurementPreference::class);
+    }
+
+    public function getPreferedUnitSystem(): UnitSystem
+    {
+        return $this->measurementPreference()->first()->system ?? UnitSystem::METRIC;
     }
 }
