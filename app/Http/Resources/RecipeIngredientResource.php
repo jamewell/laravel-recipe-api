@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\UnitSystem;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,6 +26,8 @@ class RecipeIngredientResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $userPreference = $request->user()?->getPreferedUnitSystem() ?? UnitSystem::METRIC;
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -33,7 +36,11 @@ class RecipeIngredientResource extends JsonResource
                 'name' => $this->category->name,
             ]),
             'quantity' => $this->pivot->quantity,
-            'unit' => UnitOfMeasurementResource::make($this->pivot->unit),
+            'unit' => new ConvertibleUnitResource(
+                $this->pivot->unit,
+                $this->pivot->quantity,
+                $userPreference,
+            ),
             'notes' => $this->pivot->notes,
         ];
     }

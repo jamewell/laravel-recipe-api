@@ -8,6 +8,7 @@ use App\Http\Controllers\Recipe\IndexController;
 use App\Http\Controllers\Recipe\ShowController;
 use App\Http\Controllers\Recipe\StoreController;
 use App\Http\Controllers\Recipe\UpdateController;
+use App\Http\Controllers\Unit\IndexController as UnitIndexController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,6 @@ Route::get('recipes', IndexController::class)->name('api.recipes.index');
 Route::get('recipes/{recipe}', ShowController::class)
     ->name('api.recipes.show')
     ->where('recipe', '[0-9]+');
+
+Route::get('units', UnitIndexController::class)
+    ->name('api.units.index');
