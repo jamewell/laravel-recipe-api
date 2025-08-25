@@ -42,7 +42,6 @@ class ConvertibleUnitResource extends JsonResource
             'abbreviation' => $this->abbreviation,
             'system' => $this->system->value,
             'type' => $this->type->value,
-            'original_amount' => $this->amount,
         ];
 
         if ($this->shouldConvert()) {

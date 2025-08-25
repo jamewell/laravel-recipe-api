@@ -33,9 +33,11 @@ class ShowControllerTest extends RecipeTestCase
                             'name',
                             'quantity',
                             'unit' => [
+                                'id',
                                 'full_name',
                                 'abbreviation',
-                                'description',
+                                'system',
+                                'type',
                             ],
                             'notes',
                         ],

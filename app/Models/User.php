@@ -77,6 +77,6 @@ class User extends Authenticatable
 
     public function getPreferedUnitSystem(): UnitSystem
     {
-        return $this->measurementPreference()->system ?? UnitSystem::METRIC;
+        return $this->measurementPreference()->first()->system ?? UnitSystem::METRIC;
     }
 }
