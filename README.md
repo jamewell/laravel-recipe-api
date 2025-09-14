@@ -41,7 +41,7 @@ The Laravel Recipe API provides endpoints for creating, reading, updating, and d
     ```
 5. **Run database migrations:**
     ```sh
-    ddev php artisan migrate
+    ddev php artisan migrate --seed
     ```
 6. **Access the application:**
     - API: http://localhost:8080 (or the URL provided by ddev describe)
