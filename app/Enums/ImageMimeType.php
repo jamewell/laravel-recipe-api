@@ -36,7 +36,7 @@ enum ImageMimeType: string
     public function getExtensions(): string
     {
         return match ($this) {
-            self::JPEG => 'jpeg',
+            self::JPEG => 'jpg',
             self::PNG => 'png',
             self::GIF => 'gif',
             self::WEBP => 'webp',

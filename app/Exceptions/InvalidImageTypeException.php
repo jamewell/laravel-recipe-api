@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Constants\ImageConstants;
 use App\Enums\ImageMimeType;
 
 class InvalidImageTypeException extends ImageValidationException
@@ -11,7 +12,7 @@ class InvalidImageTypeException extends ImageValidationException
         $allowedTypes = implode(', ', array_map(fn ($type) => strtoupper(explode('/', $type)[1]), ImageMimeType::allowedTypes()));
 
         parent::__construct(
-            'Invalid image MIME type',
+            ImageConstants::ERROR_INVALID_TYPE,
             "Please upload a valid image file. Supported formats: {$allowedTypes}.",
             'INVALID_IMAGE_TYPE'
         );

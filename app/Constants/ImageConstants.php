@@ -29,9 +29,9 @@ class ImageConstants
     public const FALLBACK_IMAGE_DIRECTORY = 'fallbacks';
 
     // Validation messages
-    public const ERROR_INVALID_TYPE = 'Invalid image type. Allowed: JPEG, PNG, GIF, WEBP';
+    public const ERROR_INVALID_TYPE = 'Invalid image MIME type';
 
-    public const ERROR_FILE_TOO_LARGE = 'Image too large. Maximum size: %dKB';
+    public const ERROR_FILE_TOO_LARGE = 'Image size exceeds maximum allowed size of %dKB';
 
     public const ERROR_DIMENSIONS_TOO_SMALL = 'Image dimensions too small. Minimum: %dx%dpx';
 
